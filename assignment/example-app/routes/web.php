@@ -4,8 +4,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TodoController;
 
-Route::get('/hello', 'App\Http\Controllers\HelloController@message');
-Route::get('/bye', 'App\Http\Controllers\ByeController@message');
+Route::get('/hello', 'App\Http\Controllers\HelloController@message')->name('hello');
+Route::get('/bye', 'App\Http\Controllers\ByeController@message')->name('bye');
 
 Route::get('/', function () {
     return view('welcome');
@@ -24,6 +24,5 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::resource('todos', TodoController::class);
 });
-
 
 require __DIR__.'/auth.php';

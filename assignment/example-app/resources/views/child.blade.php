@@ -4,5 +4,5 @@
 
 @section('content')
     <p>{{ $msg }}</p>
-    <a href="{{ $link }}">リンク</a>
+    <a href="{{ $link }}">{{$link}}</a>
 @stop

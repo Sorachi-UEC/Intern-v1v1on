@@ -60,7 +60,8 @@ class TodoController extends Controller
      */
     public function edit(string $id)
     {
-        
+        $todo = Todo::findOrFail($id);
+        return view('todos.edit', compact('todo'));
     }
 
     /**
@@ -70,14 +71,18 @@ class TodoController extends Controller
     {
         $todo = Todo::where('user_id', Auth::id())->findOrFail($id);
 
-        $validated = $request->validate([
-            'title' => 'sometimes|string|max255',
-            'dexcription' => 'nullable|string',
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'nullable|string',
         ]);
 
-        $todo -> update($validated);
+        $todo = Todo::findOrFail($id); // IDが見つからない場合エラーを出す
+        $todo->title = $request->title;
+        $todo->description = $request->description;
+        $todo->save(); // ここでデータを保存
 
-        return response()->json($todo);
+
+        return redirect() -> route('todos.index') -> with('success', 'ToDo Updated!');
     }
 
     /**
