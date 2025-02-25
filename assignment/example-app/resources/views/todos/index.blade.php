@@ -30,6 +30,7 @@
     <ul>
         @foreach ($todos as $todo)
         <li class="block p-4 bg-white border-l-4 border-blue-500 rounded-lg shadow-md mb-4">
+            <input type="checkbox" class="mr-4 w-3 h-3 appearance-none border-2 border-gray-400 rounded-md checked:bg-orange-500 checked:border-orange-500">
             <div class="p-4 bg-gray-100 rounded-lg shadow-md mb-4">
             <strong>{{ $todo->title }}</strong><br>
             {{$todo->description}} <!-- descriptionを表示 -->

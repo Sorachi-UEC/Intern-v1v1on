@@ -43,6 +43,7 @@ class TodoController extends Controller
         
         
         return redirect()->route('todos.index');
+        //return view('todos.index');
         
     }
 
